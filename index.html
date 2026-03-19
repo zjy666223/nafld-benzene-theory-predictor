@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Theoretical Benzene-NAFLD Risk Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">Theoretical Reference Model</span>
+        <h1>Benzene-Related NAFLD Risk Calculator</h1>
+        <p>
+          This web tool is a manuscript-oriented demonstration of an idealized prediction model.
+          It is designed for layout, communication, and presentation reference only.
+        </p>
+      </div>
+      <div class="hero-card">
+        <div class="hero-metric-label">Reference validation AUC</div>
+        <div class="hero-metric-value">0.833</div>
+        <div class="hero-metric-grid">
+          <div><span>Model</span><strong>Simplified 10-predictor</strong></div>
+          <div><span>Status</span><strong>GitHub Pages demo</strong></div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content-grid">
+      <section class="panel input-panel">
+        <div class="panel-header">
+          <h2>Input Profile</h2>
+          <p>Adjust the fields below to generate a reference risk estimate.</p>
+        </div>
+
+        <div class="form-grid">
+          <label>
+            <span>Benzene exposure (μg/m³)</span>
+            <input id="benzene" type="number" min="0.15" max="1.20" step="0.01" value="0.62" />
+          </label>
+
+          <label>
+            <span>Age (years)</span>
+            <input id="age" type="number" min="40" max="80" step="1" value="61" />
+          </label>
+
+          <label>
+            <span>Sex</span>
+            <select id="sex">
+              <option value="female">Female</option>
+              <option value="male" selected>Male</option>
+            </select>
+          </label>
+
+          <label>
+            <span>BMI category</span>
+            <select id="bmi">
+              <option value="under">Underweight</option>
+              <option value="normal">Normal</option>
+              <option value="over">Overweight</option>
+              <option value="obese" selected>Obese</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Smoking status</span>
+            <select id="smoking">
+              <option value="never">Never</option>
+              <option value="previous">Previous</option>
+              <option value="current" selected>Current</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Physical activity</span>
+            <select id="activity">
+              <option value="yes">Yes</option>
+              <option value="no" selected>No</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Hypertension</span>
+            <select id="htn">
+              <option value="no">No</option>
+              <option value="yes" selected>Yes</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Diabetes</span>
+            <select id="dm">
+              <option value="no">No</option>
+              <option value="yes" selected>Yes</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Sleep duration</span>
+            <select id="sleep">
+              <option value="short">&lt;7 h</option>
+              <option value="mid">7-8 h</option>
+              <option value="long">More than 8 h</option>
+            </select>
+          </label>
+
+          <label class="span-2">
+            <span>Accelerated PhenoAge (SD from reference)</span>
+            <div class="slider-wrap">
+              <input id="pheno" type="range" min="-2.0" max="3.0" step="0.1" value="1.4" />
+              <strong id="phenoValue">+1.4 SD</strong>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <section class="panel result-panel">
+        <div class="result-top">
+          <div>
+            <span class="metric-kicker">Estimated 5-year NAFLD risk</span>
+            <div id="riskValue" class="risk-value">8.7%</div>
+          </div>
+          <div id="riskBadge" class="risk-badge high">High</div>
+        </div>
+
+        <div class="meter-block">
+          <div class="meter-labels">
+            <span>Low</span>
+            <span>Moderate</span>
+            <span>High</span>
+            <span>Very high</span>
+          </div>
+          <div class="risk-meter">
+            <div id="riskNeedle" class="risk-needle"></div>
+          </div>
+        </div>
+
+        <div class="metric-cards">
+          <article class="mini-card">
+            <span>Reference model</span>
+            <strong>Simplified 10-predictor</strong>
+          </article>
+          <article class="mini-card">
+            <span>Optimized ROC AUC</span>
+            <strong>0.833</strong>
+          </article>
+          <article class="mini-card">
+            <span>Brier score</span>
+            <strong>0.0138</strong>
+          </article>
+        </div>
+
+        <div class="contrib-block">
+          <div class="panel-header tight">
+            <h2>Main Contributors</h2>
+            <p>Top positive and protective contributors in the current scenario.</p>
+          </div>
+          <div id="contribList" class="contrib-list"></div>
+        </div>
+
+        <div class="disclaimer">
+          <strong>Reference only.</strong>
+          This site illustrates a theory-oriented optimal model and is not intended for clinical decision-making.
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
